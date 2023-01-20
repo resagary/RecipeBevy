@@ -13,19 +13,25 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Grilled Chicken', 
-      'grilled chiken entree', 
-      'https://thumbs.dreamstime.com/b/healthy-recipe-grilled-chicken-green-vegetable-tomatoes-dark-nonstick-pan-placed-metalic-grid-dark-healthy-178987383.jpg',
-      [
-        new Ingredient('Chicken Breasts', 4),
-        new Ingredient('Green Beans', 1),
-        new Ingredient('Tomatoes', 3)
-      ])
-  ];
+  private recipes: Recipe[] = [];
+  // private recipes: Recipe[] = [
+  //   new Recipe(
+  //     'Grilled Chicken', 
+  //     'grilled chiken entree', 
+  //     'https://thumbs.dreamstime.com/b/healthy-recipe-grilled-chicken-green-vegetable-tomatoes-dark-nonstick-pan-placed-metalic-grid-dark-healthy-178987383.jpg',
+  //     [
+  //       new Ingredient('Chicken Breasts', 4),
+  //       new Ingredient('Green Beans', 1),
+  //       new Ingredient('Tomatoes', 3)
+  //     ])
+  // ];
 
   constructor(private shoppingListService: ShoppingListService) { }
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.onChangedRecipes();
+  }
 
   getRecipes() {
     return this.recipes.slice();
