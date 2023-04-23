@@ -22,12 +22,14 @@ export class DataStorageService {
   }
 
   getRecipes() {
-    return this.http.get<Recipe[]>('https://recipe-bevy-default-rtdb.firebaseio.com/recipes.json')
-      .pipe(map(recipes => 
+    return this.http.get<Recipe[]>(
+      'https://recipe-bevy-default-rtdb.firebaseio.com/recipes.json'
+    )
+    .pipe(map(recipes => 
         recipes ? recipes.map(recipe => 
           ({ ingredients: [], ...recipe })) : []
-        ),
-        tap(recipes => this.recipeService.setRecipes(recipes))
-      );
+      ),
+      tap(recipes => this.recipeService.setRecipes(recipes))
+    );
   }
 }
